@@ -4,12 +4,13 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "node -r dotenv/config bin/www",
+    "start": "serve -s build",
     "develop": "nodemon -r dotenv/config bin/www",
     "db:create": "sequelize db:create",
     "db:drop": "sequelize db:drop",
     "db:migrate": "sequelize db:migrate",
-    "db:seed": "sequelize db:seed:undo:all && sequelize db:seed:all"
+    "db:seed": "sequelize db:seed:undo:all && sequelize db:seed:all",
+    "heroku-postbulid": "npm run develop"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -22,6 +23,7 @@
     "pg": "^8.7.3",
     "sequelize": "^6.20.1",
     "sequelize-cli": "^6.4.1",
+    "serve": "^13.0.2",
     "swagger-ui-express": "^4.4.0"
   },
   "devDependencies": {
