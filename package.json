@@ -9,8 +9,7 @@
     "db:create": "sequelize db:create",
     "db:drop": "sequelize db:drop",
     "db:migrate": "sequelize db:migrate",
-    "db:seed": "sequelize db:seed:undo:all && sequelize db:seed:all",
-    "heroku-postbulid": "npm run develop"
+    "db:seed": "sequelize db:seed:undo:all && sequelize db:seed:all"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

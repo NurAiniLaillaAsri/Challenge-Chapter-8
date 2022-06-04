@@ -16,6 +16,7 @@
     ],
     "rules": {
         "linebreak-style": ["error", "windows"],
-        "object-curly-newline": ["error", { "multiline": true, "minProperties": 5 }]
+        "object-curly-newline": ["error", { "multiline": true, "minProperties": 5 }],
+        "class-methods-use-this": ["error", { "enforceForClassFields": false }]
     }
 }
