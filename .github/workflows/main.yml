@@ -1,4 +1,4 @@
-name: Deploy_Car
+name: Deploy_Car_BCR
 
 on:
   push:
