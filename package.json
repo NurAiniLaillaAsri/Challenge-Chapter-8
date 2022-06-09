@@ -4,12 +4,14 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "npm run develop",
-    "develop": "node -r dotenv/config bin/www",
+    "start": "node -r dotenv/config bin/www",
+    "develop": "nodemon -r dotenv/config bin/www",
     "db:create": "sequelize db:create",
     "db:drop": "sequelize db:drop",
     "db:migrate": "sequelize db:migrate",
-    "db:seed": "sequelize db:seed:undo:all && sequelize db:seed:all"
+    "db:seed": "sequelize db:seed:undo:all && sequelize db:seed:all",
+    "test": "jest",
+    "eslint": "npx eslint ./"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -24,7 +26,8 @@
     "sequelize": "^6.20.1",
     "sequelize-cli": "^6.4.1",
     "serve": "^13.0.2",
-    "swagger-ui-express": "^4.4.0"
+    "swagger-ui-express": "^4.4.0",
+    "ts-node": "^10.8.1"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.27.0",
@@ -34,6 +37,6 @@
     "eslint-plugin-import": "^2.26.0",
     "jest": "^28.1.1",
     "nodemon": "^2.0.16",
-    "superjest": "^0.1.0"
+    "supertest": "^6.2.3"
   }
 }

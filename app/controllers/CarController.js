@@ -89,6 +89,8 @@ class CarController extends ApplicationController {
         rentEndedAt,
       });
 
+      await this.carModel.update({ isCurrentlyRented: true }, { where: { id: req.params.id } });
+
       res.status(201).json(userCar);
     } catch (err) {
       next(err);
@@ -104,17 +106,20 @@ class CarController extends ApplicationController {
         image,
       } = req.body;
 
-      const car = this.getCarFromRequest(req);
+      await this.carModel.update(
+        {
+          name,
+          price,
+          size,
+          image,
+          isCurrentlyRented: false,
+        },
+        { where: { id: req.params.id } },
+      );
 
-      await car.update({
-        name,
-        price,
-        size,
-        image,
-        isCurrentlyRented: false,
-      });
-
-      res.status(200).json(car);
+      res.status(201).json(
+        { message: 'Data have been updated successfully' },
+      );
     } catch (err) {
       res.status(422).json({
         error: {
