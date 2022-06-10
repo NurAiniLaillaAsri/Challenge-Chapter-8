@@ -16,7 +16,7 @@ module.exports = {
     const encryptedPassword = bcrypt.hashSync(password, 10);
     const timestamp = new Date();
 
-    const role = await Role.findOne({ where: { name: 'CUSTOMER' } });
+    const role = await Role.findOne({ where: { name: 'ADMIN' } });
 
     const users = names.map((name) => ({
       name,

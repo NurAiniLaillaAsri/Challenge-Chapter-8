@@ -2,7 +2,7 @@ const request = require('supertest');
 const app = require('../../app');
 
 describe('Cars', () => {
-  it('Get all car list', () => {
+  it('Get car', () => {
     return request(app)
       .get('/v1/cars')
       .set('Accept', 'application/json')
