@@ -58,7 +58,7 @@ describe('POST /v1/auth/login', () => {
     .set('Content-Type', 'application/json')
     .send({ email: emailNotRegistered, password: passwordLogin })
     .then((res) => {
-      console.log(res.body);
+      // console.log(res.body);
       expect(res.statusCode).toBe(404);
       expect(res.body).toEqual({
         error: {
