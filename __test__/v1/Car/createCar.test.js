@@ -39,8 +39,8 @@ describe('POST /v1/create', () => {
       size: 'SMALL',
     })
     .then((res) => {
-      console.log(res.statusCode)
-      console.log(res.body)
+      // console.log(res.statusCode)
+      // console.log(res.body)
       expect(res.statusCode).toBe(201);
       expect(res.body).toEqual({
         id: expect.any(Number),
@@ -65,18 +65,10 @@ describe('POST /v1/create', () => {
       size: 'SMALL',
     })
     .then((res) => {
-      console.log(res.statusCode)
-      console.log(res.body)
+      // console.log(res.statusCode)
+      // console.log(res.body)
       expect(res.statusCode).toBe(401);
       expect(res.body).toEqual({
-        // id: expect.any(Number),
-        // name: expect.any(String),
-        // price: expect.any(Number),
-        // size: expect.any(String),
-        // image: expect.any(String),
-        // isCurrentlyRented: expect.any(Boolean),
-        // createdAt: expect.any(String),
-        // updatedAt: expect.any(String),
         error: {
           name: 'Error',
           message: 'Access forbidden!',
@@ -99,8 +91,8 @@ describe('POST /v1/create', () => {
       size: '',
     })
     .then((res) => {
-      console.log(res.statusCode)
-      console.log(res.body)
+      // console.log(res.statusCode)
+      // console.log(res.body)
       expect(res.statusCode).toBe(422);
       expect(res.body).toEqual({
         error: {

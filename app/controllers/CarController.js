@@ -1,6 +1,6 @@
 const { Op } = require('sequelize');
 const ApplicationController = require('./ApplicationController');
-const CarAlreadyRentedError = require('../errors');
+const { CarAlreadyRentedError } = require('../errors');
 
 class CarController extends ApplicationController {
   constructor({ carModel, userCarModel, dayjs }) {

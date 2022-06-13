@@ -41,8 +41,8 @@ describe('POST /v1/cars/:id', () => {
         isCurrentlyRented: false,
       })
       .then((res) => {
-        console.log(res.statusCode)
-        console.log(res.body)
+        // console.log(res.statusCode)
+        // console.log(res.body)
         expect(res.statusCode).toBe(201);
         expect(res.body).toEqual({
           message: 'Data have been updated successfully',
@@ -72,8 +72,8 @@ describe('POST /v1/cars/:id', () => {
 
     })
     .then((res) => {
-      console.log(res.statusCode);
-      console.log(res.body);
+      // console.log(res.statusCode);
+      // console.log(res.body);
       expect(res.statusCode).toBe(422);
       expect(res.body).toEqual({
         error: {
