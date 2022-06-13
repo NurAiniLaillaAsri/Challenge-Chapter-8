@@ -19,6 +19,8 @@
         "object-curly-newline": ["error", { "multiline": true, "minProperties": 5 }],
         "class-methods-use-this": ["error", { "enforceForClassFields": false }],
         "global-require": "off",
-        "import/no-dynamic-require": "off"
+        "import/no-dynamic-require": "off",
+        "no-undef": "off",
+        "no-unreachable": "off"
     }
 }

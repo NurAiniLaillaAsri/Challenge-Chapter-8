@@ -98,7 +98,7 @@ class AuthenticationController extends ApplicationController {
         return;
       }
 
-      const role = await this.roleModel.findOne({ where: { name: this.accessControl.CUSTOMER } });
+      const role = await this.roleModel.findOne({ where: { name: this.accessControl.ADMIN } });
 
       const user = await this.userModel.create({
         name,

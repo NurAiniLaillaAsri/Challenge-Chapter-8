@@ -3,9 +3,8 @@ const app = require('../../../app');
 const { User } = require('../../../app/models');
 
 describe('User', () => {
-  let user;
   afterAll(async () => {
-    user = await User.destroy({ where: { email: 'lailla@gmail.com' } });
+    await User.destroy({ where: { email: 'lailla@gmail.com' } });
   });
 
   it('Register user', () => request(app)
