@@ -98,7 +98,7 @@ class AuthenticationController extends ApplicationController {
         return;
       }
 
-      const role = await this.roleModel.findOne({ where: { name: this.accessControl.ADMIN } });
+      const role = await this.roleModel.findOne({ where: { name: this.accessControl.CUSTOMER } });
 
       const user = await this.userModel.create({
         name,
@@ -124,13 +124,13 @@ class AuthenticationController extends ApplicationController {
       return;
     }
 
-    const role = await this.roleModel.findByPk(user.roleId);
+    // const role = await this.roleModel.findByPk(user.roleId);
 
-    if (!role) {
-      const err = new RecordNotFoundError(this.roleModel.name);
-      res.status(404).json(err);
-      return;
-    }
+    // if (!role) {
+    //   const err = new RecordNotFoundError(this.roleModel.name);
+    //   res.status(404).json(err);
+    //   return;
+    // }
 
     res.status(200).json(user);
   };

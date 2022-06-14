@@ -33,8 +33,8 @@ describe('POST /v1/cars/:id', () => {
     .set('Content-Type', 'application/json')
     .set('Authorization', `Bearer ${tokenAdmin}`)
     .then((res) => {
-      console.log(res.statusCode)
-      console.log(res.body)
+      // console.log(res.statusCode)
+      // console.log(res.body)
       expect(res.statusCode).toBe(200);
       expect(res.body).toEqual({
         message: `Succesfully delete car id ${carRent.body.id}`
