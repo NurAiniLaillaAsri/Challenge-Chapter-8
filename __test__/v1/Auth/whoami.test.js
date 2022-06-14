@@ -1,5 +1,4 @@
 const request = require('supertest');
-const bcrypt = require('bcryptjs');
 const app = require('../../../app');
 const { User } = require('../../../app/models');
 
@@ -21,19 +20,11 @@ describe('GET /v1/auth/whoami', () => {
         password: '123456',
       });
     tokenCustomer = loginCust.body.accessToken;
-  })
+  });
 
   afterAll(async () => {
-    await User.destroy({
-      where: {
-        email: 'lailla@binar.co.id',
-      }
-    })
-    await User.destroy({
-      where: {
-        email: 'nala@binar.co.id',
-      }
-    })
+    await User.destroy({ where: { email: 'lailla@binar.co.id' } });
+    await User.destroy({ where: { email: 'nala@binar.co.id' } });
   });
 
   it('should response with 401 as status code (admin)', async () => request(app)
@@ -50,12 +41,11 @@ describe('GET /v1/auth/whoami', () => {
           message: 'Access forbidden!',
           details: {
             role: 'ADMIN',
-            reason: 'ADMIN is not allowed to perform this operation.'
-          }
-        }
-      })
-    })
-  );
+            reason: 'ADMIN is not allowed to perform this operation.',
+          },
+        },
+      });
+    }));
 
   it('should response with 200 as status code (customer)', async () => request(app)
     .get('/v1/auth/whoami')
@@ -72,18 +62,13 @@ describe('GET /v1/auth/whoami', () => {
         image: null,
         createdAt: expect.any(String),
         updatedAt: expect.any(String),
-      })
-    })
-  );
+      });
+    }));
 });
 
 describe('GET /v1/auth/whoami (not an user)', () => {
   beforeEach(async () => {
-    await User.destroy({
-      where: {
-        email: 'lailla@binar.co.id',
-      }
-    })
+    await User.destroy({ where: { email: 'lailla@binar.co.id' } });
   });
 
   it('should response with 404 as status code (not an user)', async () => request(app)
@@ -98,9 +83,8 @@ describe('GET /v1/auth/whoami (not an user)', () => {
         error: {
           name: 'User',
           message: 'User not found!',
-          details: { name: 'User' }
-        }
-      })
-    })
-  );
+          details: { name: 'User' },
+        },
+      });
+    }));
 });

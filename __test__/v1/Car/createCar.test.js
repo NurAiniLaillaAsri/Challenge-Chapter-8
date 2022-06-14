@@ -74,9 +74,9 @@ describe('POST /v1/create', () => {
           message: 'Access forbidden!',
           details: {
             role: 'CUSTOMER',
-            reason: 'CUSTOMER is not allowed to perform this operation.'
-          }
-        }
+            reason: 'CUSTOMER is not allowed to perform this operation.',
+          },
+        },
       });
     }));
 

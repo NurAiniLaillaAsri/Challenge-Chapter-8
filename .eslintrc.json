@@ -18,6 +18,7 @@
         "linebreak-style": ["error", "windows"],
         "object-curly-newline": ["error", { "multiline": true, "minProperties": 5 }],
         "class-methods-use-this": ["error", { "enforceForClassFields": false }],
+        "no-unused-vars": ["error", { "argsIgnorePattern": "next" }],
         "global-require": "off",
         "import/no-dynamic-require": "off",
         "no-undef": "off",

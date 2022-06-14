@@ -1,15 +1,14 @@
 const dayjs = require('dayjs');
 const request = require('supertest');
 const app = require('../../../../app');
-const { Car } = require('../../../../app/models');
 
 dayjs().format();
 
 describe('POST /v1/cars/:id/rent', () => {
   let tokenCustomer;
   let tokenAdmin;
-  let rentStartedAt = dayjs().add(1, 'day');
-  let rentEndedAt = dayjs(rentStartedAt).add(1, 'day');
+  const rentStartedAt = dayjs().add(1, 'day');
+  const rentEndedAt = dayjs(rentStartedAt).add(1, 'day');
 
   beforeAll(async () => {
     const loginCust = await request(app)
@@ -59,9 +58,8 @@ describe('POST /v1/cars/:id/rent', () => {
         userId: expect.any(Number),
         rentStartedAt: expect.any(String),
         rentEndedAt: expect.any(String),
-      })
-    })
-  );
+      });
+    }));
 
   it('should response with 422 as status code (activeRent)', async () => request(app)
     .post(`/v1/cars/${carRent.body.id}/rent`)
@@ -76,40 +74,33 @@ describe('POST /v1/cars/:id/rent', () => {
         error: {
           name: expect.any(String),
           message: expect.any(String),
-          details: {
-            car: expect.any(Object),
-          }
-        }
+          details: { car: expect.any(Object) },
+        },
       });
-    })
-  );
+    }));
 
-  it('should response with 401 as status code (not login)', () => {
-    return request(app)
-      .post(`/v1/cars/${carRent.body.id}/rent`)
-      .set('Content-Type', 'application/json')
-      .send({ rentStartedAt, rentEndedAt })
-      .then((res) => {
-        expect(res.statusCode).toBe(401);
-        expect(res.body).toEqual(res.body);
-      });
-  });
+  it('should response with 401 as status code (not login)', () => request(app)
+    .post(`/v1/cars/${carRent.body.id}/rent`)
+    .set('Content-Type', 'application/json')
+    .send({ rentStartedAt, rentEndedAt })
+    .then((res) => {
+      expect(res.statusCode).toBe(401);
+      expect(res.body).toEqual(res.body);
+    }));
 
-  it('should response with 500 as status code', () => {
-    return request(app)
-      .post(`/v1/cars/${carRent.body.id}/rent`)
-      .set('Authorization', `Bearer ${tokenCustomer}`)
-      .set('Content-Type', 'application/json')
-      .send({})
-      .then((res) => {
-        expect(res.statusCode).toBe(500);
-        expect(res.body).toMatchObject({
-          error: {
-            name: 'Error',
-            message: 'rent data must not be empty!',
-            details: null,
-          },
-        });
+  it('should response with 500 as status code', () => request(app)
+    .post(`/v1/cars/${carRent.body.id}/rent`)
+    .set('Authorization', `Bearer ${tokenCustomer}`)
+    .set('Content-Type', 'application/json')
+    .send({})
+    .then((res) => {
+      expect(res.statusCode).toBe(500);
+      expect(res.body).toMatchObject({
+        error: {
+          name: 'Error',
+          message: 'rent data must not be empty!',
+          details: null,
+        },
       });
-  });
-})
+    }));
+});

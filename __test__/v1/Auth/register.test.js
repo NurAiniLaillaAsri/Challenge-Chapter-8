@@ -44,8 +44,8 @@ describe('User', () => {
         error: {
           name: 'TypeError',
           message: "Cannot read properties of undefined (reading 'toLowerCase')",
-          details: null
-        }
+          details: null,
+        },
       });
     }));
 });

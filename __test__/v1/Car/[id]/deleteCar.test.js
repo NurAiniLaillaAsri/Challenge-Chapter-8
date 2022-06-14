@@ -1,7 +1,5 @@
-const dayjs = require('dayjs');
 const request = require('supertest');
 const app = require('../../../../app');
-const { Car } = require('../../../../app/models');
 
 describe('POST /v1/cars/:id', () => {
   let tokenAdmin;
@@ -36,9 +34,6 @@ describe('POST /v1/cars/:id', () => {
       // console.log(res.statusCode)
       // console.log(res.body)
       expect(res.statusCode).toBe(200);
-      expect(res.body).toEqual({
-        message: `Succesfully delete car id ${carRent.body.id}`
-      })
-    })
-  );
-})
+      expect(res.body).toEqual({ message: `Succesfully delete car id ${carRent.body.id}` });
+    }));
+});

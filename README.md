@@ -7,3 +7,8 @@ Tugas kalian disini adalah:
 3. Coverage minimal 70%
 
 Good luck!
+
+# Login
+- Admin
+    email: admin@gmail.com
+    password: admin
