@@ -39,6 +39,13 @@ describe('User', () => {
     .send({})
     .then((res) => {
       expect(res.statusCode).toBe(500);
-      console.log(res.body);
+      // console.log(res.body);
+      expect(res.body).toEqual({
+        error: {
+          name: 'TypeError',
+          message: "Cannot read properties of undefined (reading 'toLowerCase')",
+          details: null
+        }
+      });
     }));
 });

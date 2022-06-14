@@ -83,4 +83,33 @@ describe('POST /v1/cars/:id/rent', () => {
       });
     })
   );
+
+  it('should response with 401 as status code (not login)', () => {
+    return request(app)
+      .post(`/v1/cars/${carRent.body.id}/rent`)
+      .set('Content-Type', 'application/json')
+      .send({ rentStartedAt, rentEndedAt })
+      .then((res) => {
+        expect(res.statusCode).toBe(401);
+        expect(res.body).toEqual(res.body);
+      });
+  });
+
+  it('should response with 500 as status code', () => {
+    return request(app)
+      .post(`/v1/cars/${carRent.body.id}/rent`)
+      .set('Authorization', `Bearer ${tokenCustomer}`)
+      .set('Content-Type', 'application/json')
+      .send({})
+      .then((res) => {
+        expect(res.statusCode).toBe(500);
+        expect(res.body).toMatchObject({
+          error: {
+            name: 'Error',
+            message: 'rent data must not be empty!',
+            details: null,
+          },
+        });
+      });
+  });
 })

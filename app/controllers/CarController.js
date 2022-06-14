@@ -67,6 +67,7 @@ class CarController extends ApplicationController {
       const car = await this.getCarFromRequest(req);
 
       if (!rentEndedAt) rentEndedAt = this.dayjs(rentStartedAt).add(1, 'day');
+      if (!rentStartedAt) throw new Error('rent data must not be empty!');
 
       const activeRent = await this.userCarModel.findOne({
         where: {
@@ -140,7 +141,7 @@ class CarController extends ApplicationController {
   }
 
   getListQueryFromRequest(req) {
-    const { size, availableAt } = req.query;
+    const { size = 'SMALL', availableAt = '2022-06-07T22:20:55.029Z' } = req.query;
     const offset = this.getOffsetFromRequest(req);
     const limit = req.query.pageSize || 10;
     const where = {};

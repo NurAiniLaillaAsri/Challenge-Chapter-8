@@ -3,15 +3,19 @@ const path = require('path');
 const Sequelize = require('sequelize');
 
 const basename = path.basename(__filename);
-const env = process.env.NODE_ENV || 'development';
+// const env = process.env.NODE_ENV || 'development';
+let env = 'development';
+if (process.env.NODE_ENV) {
+  env = process.env.NODE_ENV;
+}
 const config = require('../../config/database')[env];
 
 const db = {};
 
 let sequelize;
-if (config.use_env_variable) {
+try {
   sequelize = new Sequelize(process.env[config.use_env_variable], config);
-} else {
+} catch (error) {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
