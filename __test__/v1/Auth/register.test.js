@@ -15,7 +15,10 @@ describe('User', () => {
       email: 'lailla@gmail.com',
       password: 'lailla',
     })
-    .expect(201));
+    .then((res) => {
+      expect(res.statusCode).toBe(201);
+      expect(res.body.accessToken).toEqual(res.body.accessToken);
+    }));
 
   it('Register with excisting mail', () => request(app)
     .post('/v1/auth/register')
@@ -25,5 +28,17 @@ describe('User', () => {
       email: 'lailla@gmail.com',
       password: 'la',
     })
-    .expect(422));
+    .then((res) => {
+      expect(res.statusCode).toBe(422);
+      expect(res.body.accessToken).toEqual(res.body.accessToken);
+    }));
+
+  it('should return status code 500', () => request(app)
+    .post('/v1/auth/register')
+    .set('Accept', 'application/json')
+    .send({})
+    .then((res) => {
+      expect(res.statusCode).toBe(500);
+      console.log(res.body);
+    }));
 });

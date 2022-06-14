@@ -68,4 +68,20 @@ describe('POST /v1/auth/login', () => {
         },
       });
     }));
+
+  it('should return status code 500', async () => request(app)
+    .post('/v1/auth/login')
+    .set('Content-Type', 'application/json')
+    .send({})
+    .then((res) => {
+      // console.log(res.body);
+      expect(res.statusCode).toBe(500);
+      expect(res.body).toEqual({
+        error: {
+          name: 'TypeError',
+          message: "Cannot read properties of undefined (reading 'toLowerCase')",
+          details: null
+        }
+      });
+    }));
 });
